@@ -31,6 +31,34 @@ if (isset($_POST["action"]) && $_POST["action"] == "add") {
 }
 
 // Check if action is update
+if (isset($_POST["action"]) && $_POST["action"] == "update") {
+    // Get input data
+
+    $id=$_POST['id'];
+    $title=$_POST['title'];
+    $isbn=$_POST['isbn'];
+    $author=$_POST['author'];
+    $publisher=$_POST['publisher'];
+    $year_published=$_POST['year_published'];
+
+    //Validate input data
+    if (empty($id) || empty($title) || empty($isbn) || empty($author)  || empty($publisher)   || empty($year_published)  ) {
+        header("HTTP/1.1 400 Bad Request");
+        exit();
+    }
+
+    // Insert record in database
+    $sql = "UPDATE book SET title='$title', isbn='$isbn', author='$author', publisher='$publisher', year_published='$year_published' WHERE id='$id'";
+    if (mysqli_query($conn, $sql)) {
+        header("HTTP/1.1 200 OK");
+        exit();
+    } else {
+        header("HTTP/1.1 500 Internal Server Error");
+        exit();
+    }
+}
+
+// check if action is delete
 if (isset($_POST["action"]) && $_POST["action"] == "delete") {
     // Get input data
 
