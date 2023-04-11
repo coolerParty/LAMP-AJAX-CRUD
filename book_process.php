@@ -6,7 +6,6 @@ include 'database.php';
 // Check if action is add
 if (isset($_POST["action"]) && $_POST["action"] == "add") {
     // Get input data
-
     $title=$_POST['title'];
     $isbn=$_POST['isbn'];
     $author=$_POST['author'];
@@ -14,8 +13,9 @@ if (isset($_POST["action"]) && $_POST["action"] == "add") {
     $year_published=$_POST['year_published'];
 
     //Validate input data
-    if (empty($title) || empty($isbn) || empty($author)  || empty($publisher)   || empty($year_published)  ) {
-        header("HTTP/1.1 400 Bad Request");
+    if (empty($title) || empty($isbn) || empty($author) || empty($publisher) || empty($year_published) || !preg_match('/^\d{4}$/', $year_published)) {
+        // header("HTTP/1.1 400 Bad Request");
+        echo "Invalid input of data!";
         exit();
     }
 
@@ -42,8 +42,9 @@ if (isset($_POST["action"]) && $_POST["action"] == "update") {
     $year_published=$_POST['year_published'];
 
     //Validate input data
-    if (empty($id) || empty($title) || empty($isbn) || empty($author)  || empty($publisher)   || empty($year_published)  ) {
-        header("HTTP/1.1 400 Bad Request");
+    if (empty($title) || empty($isbn) || empty($author) || empty($publisher) || empty($year_published) || !preg_match('/^\d{4}$/', $year_published)) {
+        // header("HTTP/1.1 400 Bad Request");
+        echo "Invalid input of data!";
         exit();
     }
 
