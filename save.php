@@ -92,15 +92,29 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && $_GET["action"] == "show") {
     if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
             $html .= '<tr>';
-            $html .= '<td class="id">' . $row['id'] . '</td>';
             $html .= '<td class="title">' . $row['title'] . '</td>';
             $html .= '<td class="isbn">' . $row['isbn'] . '</td>';
             $html .= '<td class="author">' . $row['author'] . '</td>';
             $html .= '<td class="publisher">' . $row['publisher'] . '</td>';
             $html .= '<td class="year_published">' . $row['year_published'] . '</td>';
             $html .= '<td>';
-            $html .= '<button type="button" class="btn btn-success float-right edit" data-toggle="modal" data-target="#myModalUPDATE" id="edit">Edit</button>';
-            $html .= '<button type="button" class="btn btn-danger float-right delete" data-toggle="modal">Delete</button>';
+            $html .= '<button type="button" class="btn btn-success float-right text-uppercase edit" 
+                
+                data-toggle="modal" 
+                data-target="#myModalUPDATE"
+                data-id="'. $row['id'] .'"
+                data-title="'. $row['title'] .'"
+                data-isbn="'. $row['isbn'] .'"
+                data-author="'. $row['author'] .'"
+                data-publisher="'. $row['publisher'] .'"
+                data-year-published="'. $row['year_published'] .'"
+                id="edit" style="margin-right: 10px;">Edit</button>';
+
+            $html .= '<button type="button" class="btn btn-danger float-right text-uppercase delete" 
+                data-toggle="modal" 
+                data-id="'. $row['id'] .'"
+                >Delete</button>';
+                
             $html .= '</td>';
             $html .= '</tr>';
         }
