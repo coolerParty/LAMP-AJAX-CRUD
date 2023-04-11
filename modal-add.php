@@ -32,7 +32,7 @@
 
           <div class="form-group">
             <label for="year_published">Year Published:</label>
-            <input type="integer" class="form-control" id="year_published">
+            <input type="number" class="form-control" id="year_published">
           </div>
           
         </div>
